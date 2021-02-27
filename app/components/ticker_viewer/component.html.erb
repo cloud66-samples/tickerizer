@@ -19,7 +19,12 @@
           <% end %>
         </div>
         <% if ticker.ready? %>
-        <div class="bg-<%= change_color %>-200 rounded-full px-2">
+        <div class="bg-<%= change_color %>-200 rounded-full px-2"
+             role="button"
+             data-action="click->ticker-viewer--component#toggle"
+             data-percent-change="<%= ticker.change_percent %>"
+             data-price-change="<%= ticker.change %>"
+             data-price-type="price">
           <div class="flex text-xs font-medium text-<%= change_color %>-500 items-center">
             <% if ticker.change >= 0 %>
             <svg class="w-2 h-2 mr-1 fill-current text-<%= change_color %>-700" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +35,7 @@
                 <path d="m56.398 94.801 27.902-27.801c3.6016-3.6016 3.6016-9.3008 0-12.898-3.6016-3.6016-9.3008-3.6016-12.898 0l-12.301 12.297v-54.797c0-5-4.1016-9.1016-9.1016-9.1016s-9.1016 4.1016-9.1016 9.1016v54.801l-12.297-12.203c-3.6016-3.6016-9.3008-3.6016-12.898 0-1.8008 1.8008-2.6992 4.1016-2.6992 6.3984 0 2.3008 0.89844 4.6992 2.6992 6.3984l27.801 27.801c1.6992 1.6992 4 2.6992 6.3984 2.6992 2.3984 0.003906 4.7969-0.99609 6.4961-2.6953z"/>
               </svg>
             <% end %>
-            <%= change_value(:change) %>
+            <span data-ticker-viewer--component-target="change"><%= change_value(:change) %></span>
           </div>
         </div>
         <% end %>
