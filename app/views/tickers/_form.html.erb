@@ -1,0 +1,15 @@
+<%= turbo_frame_tag dom_id(ticker) do %>
+<div class="border border-gray-100 rounded shadow-sm p-4 hover:shadow" role="button">
+    <% unless ticker.errors.empty? %>
+      <div class="text-xs uppercase bg-red-200 text-red-700 rounded p-1 mb-2">
+        <%= ticker.errors.full_messages.first %>
+      </div>
+    <% end %>
+    <%= form_with(model: ticker) do |f| %>
+      <%= f.text_field :symbol,
+                       autofocus: true,
+                       placeholder: 'Enter a symbol like AAPL',
+                       class: 'leading-4 border border-gray-100 shadow-sm rounded-sm w-full' %>
+    <% end %>
+</div>
+<% end %>

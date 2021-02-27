@@ -1,0 +1,16 @@
+<%= turbo_stream_from :tickers %>
+<div class="bg-white">
+  <div class="max-w-7xl mx-auto py-16 px-4 sm:pt-24 sm:pb-12 sm:px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-base font-semibold text-green-600 tracking-wide uppercase">Cloud 66</h2>
+      <p class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">Tickerizer</p>
+      <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">A Simple Stock Ticker App to Demonstrate, Rails, Hotwire, ViewComponents and TailwindCSS</p>
+    </div>
+  </div>
+</div>
+
+<% if @has_token %>
+  <%= render 'index', tickers: @tickers %>
+<% else %>
+  <%= render 'onboard' %>
+<% end %>
