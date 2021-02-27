@@ -1,24 +1,6 @@
-# README
+# Tickerizer
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a demo application to showcase Rails, Hotwire (Turbo and Stimulus), TailwindCSS and ViewComponents in a single stack. 
 
-Things you may want to cover:
+Tickerizer lets you add stock tickers to your dashboard. To use it you need a free Alpha Vantage API key. You can get it here https://www.alphavantage.co/support/#api-key
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
