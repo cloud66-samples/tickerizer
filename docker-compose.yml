@@ -1,0 +1,69 @@
+version: "3"
+services:
+  tickerizer_redis:
+    image: redis:4.0-alpine
+    container_name: tickerizer_redis
+    networks:
+      - development
+    volumes:
+      - shared_data:/var/shared/redis
+  tickerizer_app:
+    build:
+      context: docker/
+      dockerfile: Dockerfile.dev
+    image: tickerizer_app:latest
+    container_name: tickerizer_app
+    volumes:
+      - type: volume
+        source: npm_cache
+        target: /var/app/node_modules
+        volume:
+          nocopy: true
+      - type: bind
+        source: ./
+        target: /var/app
+      - type: volume
+        source: shared_data
+        target: /var/shared
+      - type: volume
+        source: gem_cache
+        target: /usr/local/bundle/gems
+    networks:
+      - development
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
+    entrypoint: dev-entrypoint.sh
+    command: ["rails", "server", "-p", "3000", "-b", "0.0.0.0"]
+    environment:
+      RAILS_ENV: development
+      WEBPACKER_DEV_SERVER_HOST: tickerizer_webpacker
+      EDITOR: vi
+    depends_on:
+      - tickerizer_webpacker
+      - tickerizer_redis
+  tickerizer_webpacker:
+    image: tickerizer_app:latest
+    container_name: tickerizer_webpacker
+    volumes:
+      - .:/var/app
+      - shared_data:/var/shared
+      - gem_cache:/usr/local/bundle/gems
+    networks:
+      - development
+    ports:
+      - 3035:3035
+    stdin_open: true
+    tty: true
+    environment:
+      RAILS_ENV: development
+    entrypoint: dev-webpacker-entrypoint.sh
+    depends_on:
+      - tickerizer_redis
+networks:
+  development:
+volumes:
+  gem_cache:
+  shared_data:
+  npm_cache:

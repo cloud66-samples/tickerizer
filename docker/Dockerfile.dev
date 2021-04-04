@@ -1,0 +1,46 @@
+FROM ruby:alpine3.13
+
+ENV APP_PATH /var/app
+ENV BUNDLE_VERSION 2.2.6
+ENV BUNDLE_PATH /usr/local/bundle/gems
+ENV TMP_PATH /tmp/
+ENV RAILS_LOG_TO_STDOUT true
+ENV RAILS_PORT 3000
+
+# install dependencies for application
+RUN apk -U add --no-cache \
+  build-base \
+  git \
+  imagemagick \
+  less \
+  libxml2-dev \
+  libxslt-dev \
+  nodejs \
+  nodejs-npm \
+  postgresql-dev \
+  postgresql-client \
+  sqlite sqlite-dev sqlite-libs \
+  tzdata \
+  yarn \
+  && rm -rf /var/cache/apk/* \
+  && mkdir -p $APP_PATH
+
+
+RUN gem install bundler --version "$BUNDLE_VERSION" \
+  && rm -rf $GEM_HOME/cache/*
+
+# copy entrypoint scripts and grant execution permissions
+COPY ./dev-docker-entrypoint.sh /usr/local/bin/dev-entrypoint.sh
+COPY ./dev-webpacker-docker-entrypoint.sh /usr/local/bin/dev-webpacker-entrypoint.sh
+COPY ./test-docker-entrypoint.sh /usr/local/bin/test-entrypoint.sh
+RUN chmod +x /usr/local/bin/dev-entrypoint.sh   \
+  && chmod +x /usr/local/bin/test-entrypoint.sh \
+  && chmod +x /usr/local/bin/dev-webpacker-entrypoint.sh
+
+# navigate to app directory
+WORKDIR $APP_PATH
+
+EXPOSE $RAILS_PORT
+
+ENTRYPOINT [ "bundle", "exec" ]
+

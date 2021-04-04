@@ -58,10 +58,10 @@ development:
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false
-    host: localhost
+    host: tickerizer_webpacker
     port: 3035
-    public: localhost:3035
-    hmr: false
+    public: 0.0.0.0:3035
+    hmr: true
     # Inline should be set to true if using HMR
     inline: true
     overlay: true
@@ -72,9 +72,10 @@ development:
     pretty: false
     headers:
       'Access-Control-Allow-Origin': '*'
+    watch:
+      poll: 1000
     watch_options:
       ignored: '**/node_modules/**'
-
 
 test:
   <<: *default
