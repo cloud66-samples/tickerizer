@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_02_27_171421) do
 
-  create_table "tickers", force: :cascade do |t|
+  create_table "tickers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "symbol", null: false
     t.float "open"
     t.float "close"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_02_27_171421) do
     t.float "change"
     t.float "previous_close"
     t.float "price"
-    t.datetime "last_fetch_at"
+    t.timestamp "last_fetch_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

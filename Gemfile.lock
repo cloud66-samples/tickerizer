@@ -113,6 +113,7 @@ GEM
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_xml (0.6.0)
+    mysql2 (0.5.3)
     nio4r (2.5.5)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
@@ -183,7 +184,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     stimulus-rails (0.2.3)
       rails (>= 6.0.0)
     tailwindcss-rails (0.3.3)
@@ -228,6 +228,7 @@ DEPENDENCIES
   hotwire-rails
   jbuilder (~> 2.7)
   listen (~> 3.2)
+  mysql2 (~> 0.5)
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.5)
   redis (~> 4.0)
@@ -235,7 +236,6 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
   tailwindcss-rails (~> 0.3.3)
   tzinfo-data
   view_component (~> 2.26.1)
