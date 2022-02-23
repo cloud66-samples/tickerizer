@@ -3,7 +3,7 @@
     <% tickers.each do |ticker| %>
       <div class="m-2">
         <%= turbo_frame_tag dom_id(ticker) do %>
-          <%= render 'ticker', ticker: ticker %>
+          <%= render partial: 'ticker', locals: { ticker: ticker } %>
         <% end %>
       </div>
     <% end %>

@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes yellowfade {
+    from { background: #ffff99; }
+    to { background: transparent; }
+}
+
+.new-item {
+    animation-name: yellowfade;
+    animation-duration: 1.5s;
+}

@@ -5,6 +5,7 @@ export default class extends Controller {
 
     connect() {
         console.log("ticker controller")
+        this.element.classList.add("new-item")
     }
 
     toggle(event) {
