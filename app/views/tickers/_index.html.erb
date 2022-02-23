@@ -1,0 +1,25 @@
+<%= turbo_frame_tag :tickers do %>
+  <div class="flex flex-wrap justify-center mt-8">
+    <% tickers.each do |ticker| %>
+      <div class="m-2">
+        <%= turbo_frame_tag dom_id(ticker) do %>
+          <%= render 'ticker', ticker: ticker %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="m-2">
+      <%= turbo_frame_tag 'new_ticker' do %>
+        <div class="inline-flex items-center h-20 px-4 border border-gray-100 rounded shadow-sm hover:shadow" role="button">
+          <%= link_to new_ticker_path do %>
+            <div class="flex items-center">
+              <svg class="w-8 h-8 fill-current text-blue-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+              </svg>
+              <div class="ml-2 font-semibold text-lg text-blue-700 hover:underline">Add New Ticker</div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

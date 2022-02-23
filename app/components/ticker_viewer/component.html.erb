@@ -1,0 +1,47 @@
+<div class="group block relative border <%= ticker.ready? ? 'bg-white' : 'bg-blue-50' %> border-gray-100 transition duration-100 rounded shadow-sm p-4 hover:shadow h-20 w-56"
+     data-controller="ticker-viewer--component">
+  <div>
+    <%= button_to ticker_path(ticker), method: :delete, class: 'block' do %>
+      <div class="absolute top-0 right-0 -mr-2 -mt-2 transition duration-100 ease-in-out opacity-0 text-red-500 group-hover:opacity-100">
+        <svg class="w-5 h-5 fill-current"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    <% end %>
+    <div class="flex justify-between items-center">
+      <div class="flex items-center">
+        <%= ticker.symbol %>
+        <% unless ticker.ready? %>
+          <svg class="animate-spin ml-2 h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        <% end %>
+      </div>
+      <% if ticker.ready? %>
+        <div class="<%= ticker.change.negative? ? 'bg-red-200' : 'bg-green-200' %> rounded-full px-2"
+             role="button"
+             data-action="click->ticker-viewer--component#toggle"
+          data-percent-change="<%= ticker.change_percent %>"
+          data-price-change="<%= ticker.change %>"
+          data-price-type="price">
+          <div class="flex text-xs font-medium <%= ticker.change.negative? ? 'text-red-700' : 'text-green-700' %> items-center">
+            <% if ticker.change >= 0 %>
+              <svg class="w-2 h-2 mr-1 fill-current text-green-700" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="m43.602 5.1992-27.902 27.801c-3.6016 3.6016-3.6016 9.3008 0 12.898 3.6016 3.6016 9.3008 3.6016 12.898 0l12.301-12.301v54.801c0 5 4.1016 9.1016 9.1016 9.1016s9.1016-4.1016 9.1016-9.1016v-54.797l12.301 12.301c3.6016 3.6016 9.3008 3.6016 12.898 0 1.8008-1.8008 2.6992-4.1016 2.6992-6.3984 0-2.3047-1-4.7031-2.6992-6.5039l-27.902-27.801c-1.6992-1.6992-4-2.6992-6.3984-2.6992s-4.6992 1-6.3984 2.6992z"/>
+              </svg>
+            <% else %>
+              <svg class="w-2 h-2 mr-1 fill-current text-red-700" version="1.1" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="m56.398 94.801 27.902-27.801c3.6016-3.6016 3.6016-9.3008 0-12.898-3.6016-3.6016-9.3008-3.6016-12.898 0l-12.301 12.297v-54.797c0-5-4.1016-9.1016-9.1016-9.1016s-9.1016 4.1016-9.1016 9.1016v54.801l-12.297-12.203c-3.6016-3.6016-9.3008-3.6016-12.898 0-1.8008 1.8008-2.6992 4.1016-2.6992 6.3984 0 2.3008 0.89844 4.6992 2.6992 6.3984l27.801 27.801c1.6992 1.6992 4 2.6992 6.3984 2.6992 2.3984 0.003906 4.7969-0.99609 6.4961-2.6953z"/>
+              </svg>
+            <% end %>
+            <span data-ticker-viewer--component-target="change"><%= change_value(:change) %></span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% if ticker.ready? %>
+      <span class="font-semibold text-xl text-gray-700"><span class="font-normal text-base">$</span><%= ticker.price %></span><span class="ml-1 text-gray-400 text-sm">USD</span>
+    <% end %>
+  </div>
+</div>
