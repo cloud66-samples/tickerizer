@@ -91,7 +91,7 @@ GEM
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
-    io-wait (0.2.1)
+    io-wait (0.2.0)
     irb (1.4.1)
       reline (>= 0.3.0)
     jbuilder (2.11.5)
@@ -209,6 +209,7 @@ DEPENDENCIES
   bootsnap
   cssbundling-rails
   debug
+  io-wait (= 0.2.0)
   jbuilder
   jsbundling-rails
   mysql2 (~> 0.5)
