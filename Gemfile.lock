@@ -179,7 +179,7 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
-    strscan (3.0.1)
+    strscan (3.0.0)
     thor (1.2.1)
     timeout (0.2.0)
     turbo-rails (1.0.1)
@@ -218,6 +218,7 @@ DEPENDENCIES
   redis (~> 4.0)
   sprockets-rails
   stimulus-rails
+  strscan (= 3.0.0)
   turbo-rails
   tzinfo-data
   view_component (~> 2.46)

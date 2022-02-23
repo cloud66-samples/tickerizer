@@ -34,6 +34,7 @@ gem "jbuilder"
 gem "redis", "~> 4.0"
 
 gem "io-wait", "0.1.0"
+gem "strscan", "3.0.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
