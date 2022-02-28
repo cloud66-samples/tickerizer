@@ -10,6 +10,8 @@ For more information about Tickerizer, see [this blog post](https://blog.cloud66
 
 The `main` branch of this repository uses the latest version of Rails. Other versions of Tickerizer, with support for older versions of Rails can be found under the `versions/xxx` branches.
 
+The `main` branch uses [Rails 7](https://rubyonrails.org/) with [ES Build](https://github.com/evanw/esbuild), [Hotwire](https://hotwired.dev/), [View Components](https://github.com/github/view_component) and [TailwindCSS](https://tailwindcss.com/).
+
 ## Running Locally
 
 To run Tickerizer locally, run `./bin/dev`.
