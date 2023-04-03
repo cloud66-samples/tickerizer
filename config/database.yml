@@ -2,11 +2,13 @@ development:
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
+  username: <%= ENV["MYSQL_USERNAME"] %>
+  password: <%= ENV["MYSQL_PASSWORD"] %>
   port: 3306
   timeout: 5000
   database: tickerizer_development
-  host: 127.0.0.1
+  host: <%= ENV["MYSQL_ADDRESS"] %>
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

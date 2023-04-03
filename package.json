@@ -5,13 +5,15 @@
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.1",
     "autoprefixer": "^10.4.2",
-    "esbuild": "^0.14.23",
+    "esbuild": "0.14.54",
     "lunr": "^2.3.9",
     "postcss": "^8.4.6",
-    "tailwindcss": "^3.0.23"
+    "tailwindcss": "^3.0.23",
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds"
+    "build": "esbuild ./app/javascript/*.* --bundle --sourcemap --outdir=./app/assets/builds",
+    "test": "ls -la ./app"
   }
 }

@@ -1,0 +1,35 @@
+version: "3"
+services:
+  web:
+    build: .
+    environment:
+      RAILS_ENV: development
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: tickerizer
+      MYSQL_DATABASE: tickerizer_development
+      MYSQL_ADDRESS: db
+      REDIS_URL: redis://redis:6379/1
+    command: bundle exec rails s -b 0.0.0.0 -p 3000
+    ports:
+      - "3000:3000"
+    links:
+      - db
+      - redis
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+  db:
+    image: mysql:8.0
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: tickerizer
+      MYSQL_DATABASE: tickerizer_development
+    ports:
+      - "3306:3306"
+volumes:
+  mysql_data: {}
+networks:
+  default:
+    name: tickerizer_default
