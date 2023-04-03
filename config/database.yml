@@ -2,12 +2,12 @@ development:
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV["MYSQL_USERNAME"] %>
+  username: <%= ENV.fetch("MYSQL_USERNAME") { 'root' } %>
   password: <%= ENV["MYSQL_PASSWORD"] %>
   port: 3306
   timeout: 5000
   database: tickerizer_development
-  host: <%= ENV["MYSQL_ADDRESS"] %>
+  host: <%= ENV.fetch("MYSQL_ADDRESS") { '127.0.0.1' } %>
 
 
 # Warning: The database defined as "test" will be erased and
